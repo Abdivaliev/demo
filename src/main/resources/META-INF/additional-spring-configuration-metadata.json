@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "-Dcom.sun.net.ssl.checkRevocation",
+      "type": "java.lang.String",
+      "description": "Description for -Dcom.sun.net.ssl.checkRevocation."
+  }
+] }

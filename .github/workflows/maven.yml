@@ -39,7 +39,7 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
-      run: mvn clean install --file pom.xml
+      run: mvn install -DskipTests --file pom.xml
         
     - name: run command
       run: java --jar demo.jar 

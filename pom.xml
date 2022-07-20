@@ -45,7 +45,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>
-        <finalName>testJar</finalName>
+        <finalName>demo</finalName>
     </build>
 
 </project>

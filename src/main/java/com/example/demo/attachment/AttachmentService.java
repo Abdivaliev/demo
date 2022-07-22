@@ -53,7 +53,7 @@ public record AttachmentService(
             attachment.setName(name);
 
             //papka saqlanadigan yo'l
-            Path path = Paths.get(uploadDirectories2 + "/" + originalFilename);
+            Path path = Paths.get(uploadDirectories2 + "/" + name);
 
             attachment.setPath(path.toString());
 

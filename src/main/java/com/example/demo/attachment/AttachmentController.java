@@ -67,7 +67,7 @@ private final AttachmentRepository attachmentRepository;
             Attachment attachment = optionalAttachment.get();
             response.setHeader("Content-Disposition","attachment; filename=\""+attachment.getFileOriginalName()+"\"");
             response.setContentType(attachment.getContentType());
-            FileInputStream fileInputStream=new FileInputStream("/home/uploads"+"/"+attachment.getFileOriginalName());
+            FileInputStream fileInputStream=new FileInputStream("/home/uploads"+"/"+attachment.getName());
             FileCopyUtils.copy(fileInputStream,response.getOutputStream());
         }
     }

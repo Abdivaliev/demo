@@ -23,8 +23,9 @@ public record AttachmentService(
         }
     }
 
-        public static final String uploadDirectories = "files";
-//    public static final String uploadDirectories = "C:\\Users\\User\\Documents\\GitHub/files";
+//        public static final String uploadDirectories = "files";
+//    public static final String uploadDirectories = "C:/Users/sarva/Desktop/files";
+    public static final String uploadDirectories2 = "/home/uploads";
 
     public Attachment uploadSystem(MultipartFile file) throws IOException {
 
@@ -52,7 +53,7 @@ public record AttachmentService(
             attachment.setName(name);
 
             //papka saqlanadigan yo'l
-            Path path = Paths.get(uploadDirectories + "/" + name);
+            Path path = Paths.get(uploadDirectories2 + "/" + originalFilename);
 
             attachment.setPath(path.toString());
 

@@ -2,20 +2,26 @@ package com.example.demo.attachment;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Optional;
 
 @RestController
-@RequestMapping("test/api/img")
+@RequestMapping("/test/api/img")
 public class AttachmentController {
 
-
+private final AttachmentRepository attachmentRepository;
     private final AttachmentService attachmentService;
 
-    public AttachmentController(AttachmentService attachmentService) {
+    public AttachmentController(AttachmentRepository attachmentRepository, AttachmentService attachmentService) {
+        this.attachmentRepository = attachmentRepository;
         this.attachmentService = attachmentService;
     }
 
@@ -52,4 +58,19 @@ public class AttachmentController {
             return ResponseEntity.status(301).body("Ishlamadi");
         }
     }
+
+
+    @GetMapping("/image/{id}")
+    public void getImageDynamicType(@PathVariable Integer id, HttpServletResponse response) throws IOException {
+        Optional<Attachment> optionalAttachment = attachmentRepository.findById(id);
+        if (optionalAttachment.isPresent()) {
+            Attachment attachment = optionalAttachment.get();
+            response.setHeader("Content-Disposition","attachment; filename=\""+attachment.getFileOriginalName()+"\"");
+            response.setContentType(attachment.getContentType());
+            FileInputStream fileInputStream=new FileInputStream("/home/uploads"+"/"+attachment.getFileOriginalName());
+            FileCopyUtils.copy(fileInputStream,response.getOutputStream());
+        }
+    }
+
+
 }

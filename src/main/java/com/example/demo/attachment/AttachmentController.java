@@ -26,7 +26,7 @@ public class AttachmentController {
             MultipartFile files = request.getFile("files");
             Attachment add = attachmentService.add(files);
 
-            return ResponseEntity.status(200).body(add == null ? "QO`SHILMADI":"QO`SHILDI");
+            return ResponseEntity.status(200).body(add == null ? "QO`SHILMADI" : "QO`SHILDI");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(e.getMessage());
         }
@@ -43,5 +43,13 @@ public class AttachmentController {
         }
     }
 
-
+    @GetMapping("/files")
+    public ResponseEntity<?> get (){
+        try {
+            return ResponseEntity.status(200).body(attachmentService.getAll());
+        }
+        catch (Exception e){
+            return ResponseEntity.status(301).body("Ishlamadi");
+        }
+    }
 }

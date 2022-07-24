@@ -60,6 +60,10 @@ private final AttachmentRepository attachmentRepository;
     }
 
 
+
+
+    //salom
+
     @GetMapping("/image/{id}")
     public void getImageDynamicType(@PathVariable Integer id, HttpServletResponse response) throws IOException {
         Optional<Attachment> optionalAttachment = attachmentRepository.findById(id);
